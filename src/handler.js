@@ -1,5 +1,5 @@
-const { nanoid } = require("nanoid");
-const notes = require("./notes");
+const { nanoid } = require('nanoid');
+const notes = require('./notes');
 
 const addNoteHandler = (req, h) => {
   const { title, tags, body } = req.payload;
@@ -8,8 +8,13 @@ const addNoteHandler = (req, h) => {
   const updatedAt = createdAt;
 
   const newNote = {
-    title, tags, body, id, createdAt, updatedAt,
-  }
+    title,
+    tags,
+    body,
+    id,
+    createdAt,
+    updatedAt,
+  };
 
   notes.push(newNote);
 
@@ -25,10 +30,10 @@ const addNoteHandler = (req, h) => {
     res.code(201);
     return res;
   }
-  
+
   const res = h.response({
-    status: "fail",
-    message: "Catatan gagal ditambahkan",
+    status: 'fail',
+    message: 'Catatan gagal ditambahkan',
   });
   res.code(500);
   return res;
@@ -91,7 +96,7 @@ const editNoteByIdHandler = (req, h) => {
   });
   res.code(404);
   return res;
-}
+};
 
 const deleteNoteByIdHandler = (req, h) => {
   const { id } = req.params;
@@ -113,6 +118,12 @@ const deleteNoteByIdHandler = (req, h) => {
   });
   res.code(404);
   return res;
-}
+};
 
-module.exports = { addNoteHandler, getAllNotesHandler, getNoteByIdHandler, editNoteByIdHandler, deleteNoteByIdHandler };
+module.exports = {
+  addNoteHandler,
+  getAllNotesHandler,
+  getNoteByIdHandler,
+  editNoteByIdHandler,
+  deleteNoteByIdHandler,
+};

@@ -1,20 +1,20 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import daStyle from "eslint-config-dicodingacademy";
+import globals from 'globals';
+import pluginJs from '@eslint/js';
+import daStyle from 'eslint-config-dicodingacademy';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   daStyle,
   {
-    rules: {
-      "linebreak-style": [
-        "error",
-        process.platform === "win32" ? "windows" : "unix",
-      ],
+    languageOptions: {
+      // Ganti env dengan languageOptions.globals
+      globals: {
+        ...globals.node, // Tambahkan global Node.js
+        process: 'readonly', // Secara eksplisit tambahkan process
+      },
     },
-    env: { node: true },
   },
-  { files: ["**/*.js"], languageOptions: { sourceType: "commonjs" } },
+  { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
   { languageOptions: { globals: globals.browser } },
   pluginJs.configs.recommended,
 ];
