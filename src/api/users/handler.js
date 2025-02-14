@@ -28,6 +28,17 @@ class UsersHandler {
     return response;
   }
 
+  async getUsersByUsernameHandler(request) {
+    const { username = '' } = request.query;
+    const users = await this._service.getUserByUsername(username);
+    return {
+      status: 'success',
+      data: {
+        users,
+      },
+    };
+  }
+
   async getUserByIdHandler(request) {
     const { id } = request.params;
     const user = await this._service.getUserById(id);
