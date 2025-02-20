@@ -3,3 +3,4 @@ node_modules
 access.md
 .env
 .prod.env
+src/api/uploads/file
